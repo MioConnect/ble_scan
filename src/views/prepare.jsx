@@ -35,30 +35,26 @@ class Prepare extends Component {
     render(){
         const {current} = this.state
         return(
-            <Layout>
-                <Content style={{"height": '100vh'}}>
-                    <Row>
-                        <Col span={18} offset={3}>
-                            <h1>Welcome Please check below</h1>
-                            <Steps direction="vertical" current={current}>
-                                {(steps).map((item) => (
-                                    <Step key={item.key} title={item.title} />
-                                ))}
-                            </Steps>
-                            {current < steps.length - 1 && (
-                                <Button type="primary"  onClick={this.next}>
-                                    Next
-                                </Button>
-                            )}
-                            {current === steps.length - 1 && (
-                                <Button type="primary" onClick={this.prepared}>
-                                    I'm Sure, Go Bind Device
-                                </Button>
-                            )}
-                        </Col>
-                    </Row>
-                </Content>
-            </Layout>
+            <Row>
+                <Col span={18} offset={3} style={{"marginTop":'5vh'}}>
+                    <h1>Welcome Please check below</h1>
+                    <Steps direction="vertical" current={current}>
+                        {(steps).map((item) => (
+                            <Step key={item.key} title={item.title} />
+                        ))}
+                    </Steps>
+                    {current < steps.length - 1 && (
+                        <Button type="primary"  onClick={this.next}>
+                            Next
+                        </Button>
+                    )}
+                    {current === steps.length - 1 && (
+                        <Button type="primary" onClick={this.prepared}>
+                            I'm Sure, Go Bind Device
+                        </Button>
+                    )}
+                </Col>
+            </Row>
         )
     }
 }

@@ -1,0 +1,15 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-blescanner-dev-165930-authRole",
+      "UnauthRoleArn": "arn:aws:iam::257314744375:role/amplify-blescanner-dev-165930-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::257314744375:role/amplify-blescanner-dev-165930-authRole",
+      "Region": "ap-northeast-1",
+      "DeploymentBucketName": "amplify-blescanner-dev-165930-deployment",
+      "UnauthRoleName": "amplify-blescanner-dev-165930-unauthRole",
+      "StackName": "amplify-blescanner-dev-165930",
+      "StackId": "arn:aws:cloudformation:ap-northeast-1:257314744375:stack/amplify-blescanner-dev-165930/dbb15cb0-4879-11ed-81e5-06beecd60015",
+      "AmplifyAppId": "d3sa5cqvlihymv"
+    }
+  }
+}
