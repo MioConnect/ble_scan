@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Layout, Steps, Row, Col, Button } from 'antd';
+import Auth from "../auth/smart-product";
 
 const { Step } = Steps;
 const { Header, Footer, Sider, Content } = Layout;
@@ -23,6 +24,7 @@ class Prepare extends Component {
     }
 
     next = () => {
+        Auth.getApiKey()
         this.setState({
             current: this.state.current + 1
         })
