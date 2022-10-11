@@ -25,6 +25,9 @@ class Index extends Component {
         Auth.signOut()
             .then(data => {
                 this.logger.debug("Logged out")
+                this.setState({
+                    prepared: false
+                })
                 window.location.href = '/';
             })
             .catch(err => this.logger.error(err));
