@@ -11,11 +11,12 @@ class Index extends Component {
         super(props)
 
         this.state = {
-            prepared: false
+            prepared: false,
+            apiKey:''
         }
     }
 
-    setPrepared = (bool) => {
+    setPrepared = async(bool) => {
         this.setState({
             prepared: bool
         })
@@ -24,13 +25,12 @@ class Index extends Component {
     handleLogOut = () => {
         Auth.signOut()
             .then(data => {
-                this.logger.debug("Logged out")
+                console.log("Logged out")
                 this.setState({
                     prepared: false
                 })
-                window.location.href = '/';
             })
-            .catch(err => this.logger.error(err));
+            .catch(err => console.log(err));
     }
 
     render(){

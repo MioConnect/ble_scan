@@ -106,10 +106,13 @@ apigClientFactory.newClient = function (config) {
 
         apiGateway.core.utils.assertParametersDefined(params, [], ['body']);
 
+        header = apiGateway.core.utils.parseParametersToObject(params, [])
+        header['Access-Control-Allow-Origin'] = '*'
+
         var proxyOptionsRequest = {
             verb: 'GET',
             path: pathComponent + path,
-            headers: apiGateway.core.utils.parseParametersToObject(params, []),
+            headers: header,
             queryParams: apiGateway.core.utils.parseParametersToObject(params, ['start', 'end', 'sdkType']),
             body: body
         };

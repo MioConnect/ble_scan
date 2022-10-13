@@ -6,12 +6,12 @@ const { Step } = Steps;
 const { Header, Footer, Sider, Content } = Layout;
 
 const steps = [
-    {key:"First", title:"找出订单号为xxx的一台AnyHub"},
-    {key:"Second", title:"找出订单号为xxx的一台血压计"},
-    {key:"Third", title:"找出订单号为xxx的一台体脂称"},
-    {key:"Forth", title:"找出订单号为xxx的一台温度计"},
-    {key:"Fifth", title:"找出订单号为xxx的一台血氧仪"},
-    {key:"Sixth", title:"找出订单号为xxx的一台手环"}
+    {key:"First", title:"Find an AnyHub with order number xxx"},
+    {key:"Second", title:"Find a Sphygmomanometer with order number xxx"},
+    {key:"Third", title:"Find a Scale with order number xxx"},
+    {key:"Forth", title:"Find a Thermometer with order number xxx"},
+    {key:"Fifth", title:"Find an Oximeter with order number xxx"},
+    {key:"Sixth", title:"Find a Bracelet with order number xxx"}
 ]
 
 class Prepare extends Component {
@@ -23,8 +23,7 @@ class Prepare extends Component {
         }
     }
 
-    next = () => {
-        Auth.getApiKey()
+    next = async() => {
         this.setState({
             current: this.state.current + 1
         })
