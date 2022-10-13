@@ -4,6 +4,9 @@ import { AmplifyAuthenticator, AmplifySignIn, AmplifySignInButton, AmplifyRequir
 import Amplify, { urlSafeDecode } from '@aws-amplify/core';
 import Auth from "../auth/smart-product";
 
+import backgroundImg from "../assets/img/background.png";
+import mioImg from "../assets/img/mio-connect.png";
+
 import routes from "../routes";
 
 import appConfig from '../config/config';
@@ -68,8 +71,10 @@ class Admin extends Component {
                 handleAuthStateChange={this.handleAuthStateChange}
             >
             <div slot="sign-in" ref="background-container" className="lsr-login-background-main">
+                {/* <div ref="background-container" className="lsr-login-background-top" style={{ backgroundImage: `url(${mioImg})`}}></div>
+                <div ref="login-container" className="lsr-login-background-center" style={{ backgroundImage: `url(${backgroundImg})`}}></div> */}
                 <AmplifySignIn
-                    headerText="Sign in to MioConnect"
+                    headerText="Sign in to MioConnect Tools"
                     slot="sign-in"
                     hideSignUp
                 ></AmplifySignIn>

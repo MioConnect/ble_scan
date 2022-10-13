@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, useRef } from "react";
 import { Layout, Steps, Row, Col, Button, Input, notification } from 'antd';
 import Auth from "../auth/smart-product";
 import axios from "axios"
@@ -39,43 +39,43 @@ class Bind extends Component {
             {
                 title: 'Sphygmomanometer',
                 content: <div>
-                    <h1>Please input the Sphygmomanometer's Mac</h1>
-                    <Input key='2' id="血压计Mac" placeholder="血压计Mac" defaultValue={this.state.mac1} onChange={(e)=>this.handleValueChange(e, 'mac1')}></Input>
+                    <h1>Please input the Sphygmomanometer's MAC</h1>
+                    <Input key='2' placeholder="Sphygmomanometer MAC" defaultValue={this.state.mac1} onChange={(e)=>this.handleValueChange(e, 'mac1')}></Input>
                 </div>,
             },
             {
                 title: 'Scale',
                 content: <div>
-                    <h1>Please input the Scale's Mac</h1>
-                    <Input key='3' placeholder="体脂称Mac" defaultValue={this.state.mac2} onChange={(e)=>this.handleValueChange(e, 'mac2')}></Input>
+                    <h1>Please input the Scale's MAC</h1>
+                    <Input key='3' placeholder="Scale Mac" defaultValue={this.state.mac2} onChange={(e)=>this.handleValueChange(e, 'mac2')}></Input>
                 </div>,
             },
             {
                 title: 'Thermometer',
                 content: <div>
-                    <h1>Please input the Thermometer's Mac</h1>
-                    <Input key='4' placeholder="体温计Mac" defaultValue={this.state.mac3} onChange={(e)=>this.handleValueChange(e, 'mac3')} ></Input>
+                    <h1>Please input the Thermometer's MAC</h1>
+                    <Input key='4' placeholder="Thermometer MAC" defaultValue={this.state.mac3} onChange={(e)=>this.handleValueChange(e, 'mac3')} ></Input>
                 </div>,
             },
             {
                 title: 'Oximeter',
                 content: <div>
-                    <h1>Please input the Oximeter's Mac</h1>
-                    <Input key='5' placeholder="血氧仪Mac" defaultValue={this.state.mac4} onChange={(e)=>this.handleValueChange(e, 'mac4')}></Input>
+                    <h1>Please input the Oximeter's MAC</h1>
+                    <Input key='5' placeholder="Oximeter MAC" defaultValue={this.state.mac4} onChange={(e)=>this.handleValueChange(e, 'mac4')}></Input>
                 </div>,
             },
             {
                 title: 'Bracelet',
                 content: <div>
-                    <h1>Please input the Bracelet's Mac</h1>
-                    <Input kwy='6' placeholder="手环Mac" defaultValue={this.state.mac5} onChange={(e)=>this.handleValueChange(e, 'mac5')}></Input>
+                    <h1>Please input the Bracelet's MAC</h1>
+                    <Input kwy='6' placeholder="Bracelet MAC" defaultValue={this.state.mac5} onChange={(e)=>this.handleValueChange(e, 'mac5')}></Input>
                 </div>,
             },
             {
-                title: 'do bind'
+                title: 'Set peripherals for AnyHub'
             },
             {
-                title: 'finish'
+                title: 'Finish'
             }
         ]
     }

@@ -46,3 +46,39 @@
 .steps-action{
   margin-top: 20px;
 }
+
+.lsr-login-background-main {
+  background-position: top absolute;
+  background-repeat: no-repeat;
+  text-align: center;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}   
+
+.lsr-login-background-top {
+  width: 96%;
+  text-align: center;
+  height: 20vh;
+  margin-top: 4%;
+  top: 0px;
+  position: absolute;
+  background-position: top;
+  background-size: 100% auto;
+  background-repeat: no-repeat;
+}
+
+.lsr-login-background-center {
+  width: 71%;
+  text-align: center;
+  height: 73vh;
+  margin-top: 4%;
+  position: absolute;
+  background: #ffffff;
+  background-position: center;
+  background-size: 100% 100%;
+  border-radius: 30px!important;
+  background-repeat: no-repeat;
+  box-shadow: 4px 8px 100px 0px rgba(74, 74, 74, 0.2);
+}
