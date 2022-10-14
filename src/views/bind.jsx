@@ -49,42 +49,42 @@ class Bind extends Component {
             {
                 title: 'AnyHub',
                 content: <div>
-                    <h1>Please input the AnyHub's SN</h1>
+                    <h1>Please scan the AnyHub's SN</h1>
                     <Input key='1' id="AnyHub SN" placeholder="AnyHub SN" defaultValue={this.state.HubSn} onChange={(e)=>this.handleValueChange(e, 'HubSn')}></Input>
                 </div>,
             },
             {
                 title: 'Sphygmomanometer',
                 content: <div>
-                    <h1>Please input the Sphygmomanometer's MAC</h1>
+                    <h1>Please scan the Sphygmomanometer's MAC</h1>
                     <Input key='2' placeholder="Sphygmomanometer MAC" defaultValue={this.state.mac1} onChange={(e)=>this.handleValueChange(e, 'mac1')}></Input>
                 </div>,
             },
             {
                 title: 'Scale',
                 content: <div>
-                    <h1>Please input the Scale's MAC</h1>
+                    <h1>Please scan the Scale's MAC</h1>
                     <Input key='3' placeholder="Scale Mac" defaultValue={this.state.mac2} onChange={(e)=>this.handleValueChange(e, 'mac2')}></Input>
                 </div>,
             },
             {
                 title: 'Thermometer',
                 content: <div>
-                    <h1>Please input the Thermometer's MAC</h1>
+                    <h1>Please scan the Thermometer's MAC</h1>
                     <Input key='4' placeholder="Thermometer MAC" defaultValue={this.state.mac3} onChange={(e)=>this.handleValueChange(e, 'mac3')} ></Input>
                 </div>,
             },
             {
                 title: 'Oximeter',
                 content: <div>
-                    <h1>Please input the Oximeter's MAC</h1>
+                    <h1>Please scan the Oximeter's MAC</h1>
                     <Input key='5' placeholder="Oximeter MAC" defaultValue={this.state.mac4} onChange={(e)=>this.handleValueChange(e, 'mac4')}></Input>
                 </div>,
             },
             {
                 title: 'Bracelet',
                 content: <div>
-                    <h1>Please input the Bracelet's MAC</h1>
+                    <h1>Please scan the Bracelet's MAC</h1>
                     <Input kwy='6' placeholder="Bracelet MAC" defaultValue={this.state.mac5} onChange={(e)=>this.handleValueChange(e, 'mac5')}></Input>
                 </div>,
             },
@@ -213,7 +213,7 @@ class Bind extends Component {
         }catch(err){
             notification['error']({
                 message: 'error',
-                description: 'something wrong, please try again',
+                description: 'Network error, please try again',
                 className: 'custom-class',
                 style: {
                     width: 600,

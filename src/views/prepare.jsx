@@ -6,11 +6,11 @@ const CheckboxGroup = Checkbox.Group;
 
 const plainOptions = [
     'Find an AnyHub with order number xxx',
-    'Find an Sphygmomanometer with order number xxx',
-    'Find an Scale with order number xxx',
-    'Find an Thermometer with order number xxx',
+    'Find a Sphygmomanometer with order number xxx',
+    'Find a Scale with order number xxx',
+    'Find a Thermometer with order number xxx',
     'Find an Oximeter with order number xxx',
-    'Find an Bracelet with order number xxx'
+    'Find a Bracelet with order number xxx'
 ];
 
 class Prepare extends Component {
