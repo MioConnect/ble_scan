@@ -233,7 +233,7 @@ class Bind extends Component {
     }
 
     render(){
-        const{current, status, loading, error, data} = this.state
+        const{current, status, loading, error, data, HubSn, mac1, mac2, mac3, mac4, mac5} = this.state
         return(
             <Row style={{"marginTop":'10vh'}}>
                 <Col span={18} offset={3}>
@@ -282,7 +282,7 @@ class Bind extends Component {
                                     </Row>
                                     <Row style={{"display": "block"}}>
                                         <QRCode
-                                            value={this.state.HubSn}  //value参数为生成二维码的链接
+                                            value={`{"Hub_sn": "${HubSn}", "TMB2084A":"${mac1}", "GBS2012B":"${mac2}", "AOJ20A":"${mac3}", "AOJ70B":"${mac4}", "IF105B4":"${mac5}"}`} 
                                             size={200} //二维码的宽高尺寸
                                             fgColor="#000000"  //二维码的颜色
                                         />
