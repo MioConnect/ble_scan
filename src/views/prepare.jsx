@@ -1,56 +1,73 @@
 import React, { Component } from "react";
-import { Layout, Steps, Row, Col, Button } from 'antd';
+import { Layout, Steps, Row, Col, Button, Checkbox, Divider } from 'antd';
 import Auth from "../auth/smart-product";
 
-const { Step } = Steps;
-const { Header, Footer, Sider, Content } = Layout;
+const CheckboxGroup = Checkbox.Group;
 
-const steps = [
-    {key:"First", title:"Find an AnyHub with order number xxx"},
-    {key:"Second", title:"Find a Sphygmomanometer with order number xxx"},
-    {key:"Third", title:"Find a Scale with order number xxx"},
-    {key:"Forth", title:"Find a Thermometer with order number xxx"},
-    {key:"Fifth", title:"Find an Oximeter with order number xxx"},
-    {key:"Sixth", title:"Find a Bracelet with order number xxx"}
-]
+const plainOptions = [
+    'Find an AnyHub with order number xxx',
+    'Find an Sphygmomanometer with order number xxx',
+    'Find an Scale with order number xxx',
+    'Find an Thermometer with order number xxx',
+    'Find an Oximeter with order number xxx',
+    'Find an Bracelet with order number xxx'
+];
 
 class Prepare extends Component {
     constructor(props){
         super(props)
 
         this.state = {
-            current: 0
+            current: 0,
+            AnyHub:false,
+            Sphygmomanometer: false,
+            Scale: false,
+            Thermometer: false,
+            Oximeter: false,
+            Bracelet: false,
+            indeterminate: true,
+            checkAll: false,
+            checkedList: []
         }
-    }
-
-    next = async() => {
-        this.setState({
-            current: this.state.current + 1
-        })
     }
 
     prepared = () => {
         this.props.prepared(true)
     }
 
+    onCheckAllChange = (e) => {
+        this.setState({
+            checkedList: e.target.checked ? plainOptions : [],
+            indeterminate: false,
+            checkAll: e.target.checked
+        })
+    }
+
+    onChange = (list) => {
+        this.setState({
+            checkedList:list,
+            indeterminate: !!list.length && list.length < plainOptions.length,
+            checkAll: list.length === plainOptions.length
+        })
+    }
+
     render(){
-        const {current} = this.state
+        const {indeterminate, checkAll, checkedList} = this.state
         return(
             <Row>
                 <Col span={18} offset={3} style={{"marginTop":'5vh'}}>
                     <h1>Welcome Please check below</h1>
-                    <Steps direction="vertical" current={current}>
-                        {(steps).map((item) => (
-                            <Step key={item.key} title={item.title} />
-                        ))}
-                    </Steps>
-                    {current < steps.length - 1 && (
-                        <Button type="primary"  onClick={this.next}>
-                            Next
-                        </Button>
-                    )}
-                    {current === steps.length - 1 && (
-                        <Button type="primary" onClick={this.prepared}>
+                    <Row style={{"textAlign": "left"}}>
+                        <Checkbox indeterminate={indeterminate} onChange={this.onCheckAllChange} checked={checkAll}>
+                            Check all
+                        </Checkbox>
+                    </Row>
+                    <Divider />
+                    <Row style={{"textAlign": "left"}}>
+                        <CheckboxGroup options={plainOptions} value={checkedList} onChange={this.onChange} />
+                    </Row>
+                    {checkAll && (
+                        <Button type="primary" style={{"marginTop": "25px"}} onClick={this.prepared}>
                             I'm Sure, Go Bind Device
                         </Button>
                     )}

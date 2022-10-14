@@ -82,3 +82,14 @@
   background-repeat: no-repeat;
   box-shadow: 4px 8px 100px 0px rgba(74, 74, 74, 0.2);
 }
+
+.ant-checkbox-group-item{
+  display: flex !important;
+  margin-top: 10px !important;
+  font-size: 20px !important;
+}
+
+.ant-checkbox-inner{
+  width: 20px !important;
+  height: 20px !important;
+}

@@ -1,21 +1,21 @@
 const appConfig = {
-  aws_project_region: "ap-northeast-1",
-  aws_user_pools_id: "ap-northeast-1_LX5DZM0fA",
-  aws_user_pools_web_client_id: "34t97orglindp743r5o9o1u97i",
-  identifity_pool_id: "ap-northeast-1:e0c27f7b-8653-4f18-923e-a448506d2526",
-  restApiId: "yp5udj0syf",
+  aws_project_region: "us-east-1",
+  aws_user_pools_id: "us-east-1_V5B7jSsbK",
+  aws_user_pools_web_client_id: "69cmqun5qo888sv7liv1b45ca5",
+  identifity_pool_id: "us-east-1:74bcceb4-0be8-43d5-9a81-9a0aeb878713",
+  restApiId: "yv5yxe3o54",
   oauth: {},
   use_authing: false,
-  authing_app_id: "604a2c11c435f85c8227baf3",
+  authing_app_id: "60e2961508b461330c4bdbc7",
   aws_cloud_logic_custom: [
     {
       name: "smart-product-api",
       endpoint:
-        "https://a3h9rg05rd.execute-api.ap-northeast-1.amazonaws.com/dev/v1/",
-      region: "ap-northeast-1",
+        "https://ocbhhpgyeh.execute-api.us-east-1.amazonaws.com/stg/v1/",
+      region: "us-east-1",
     },
   ],
-  deploy_env: "dev",
+  deploy_env: "stg",
 };
 
 export default appConfig;

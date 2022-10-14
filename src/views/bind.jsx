@@ -1,5 +1,5 @@
 import React, { Component, useRef } from "react";
-import { Layout, Steps, Row, Col, Button, Input, notification } from 'antd';
+import { Layout, Steps, Row, Col, Button, Input, notification, Space, Table } from 'antd';
 import Auth from "../auth/smart-product";
 import axios from "axios"
 import QRCode  from 'qrcode.react';
@@ -8,6 +8,23 @@ const { Step } = Steps;
 const { Header, Footer, Sider, Content } = Layout;
 
 let steps = []
+const columns = [
+    {
+        title: 'Device',
+        dataIndex: 'device',
+        key: 'device'
+    },
+    {
+        title: 'Data Type',
+        dataIndex: 'type',
+        key: 'type'
+    },
+    {
+        title: 'SN & MAC Address',
+        dataIndex: 'sn',
+        key: 'sn'
+    }
+]
 
 class Bind extends Component {
     constructor(props){
@@ -72,7 +89,7 @@ class Bind extends Component {
                 </div>,
             },
             {
-                title: 'Set peripherals for AnyHub'
+                title: 'Bind'
             },
             {
                 title: 'Finish'
@@ -97,39 +114,63 @@ class Bind extends Component {
             mac4:'',
             mac5:'',
             status: 'process',
+            data: []
         })
+    }
+
+    countItemInArr = (arr, item) => {
+        let count = 0
+        console.log(arr)
+        for(let i of arr){
+            if(i === item) count++
+        }
+        return count
     }
 
     next = () => {
         let sn_mac = [this.state.HubSn, this.state.mac1, this.state.mac2, this.state.mac3, this.state.mac4, this.state.mac5]
         let mac = sn_mac[this.state.current]
+
+        const data = [
+            {key:'1',device:'AnyHub',type:'Sreial Nmber',sn:this.state.HubSn},
+            {key:'2',device:'Sphygmomanometer',type:'MAC Address',sn:this.state.mac1},
+            {key:'3',device:'Scale',type:'MAC Address',sn:this.state.mac2},
+            {key:'4',device:'Thermometer',type:'MAC Address',sn:this.state.mac3},
+            {key:'5',device:'Oximeter',type:'MAC Address',sn:this.state.mac4},
+            {key:'6',device:'Bracelet',type:'MAC Address',sn:this.state.mac5},
+        ]
         
         if(this.state.current === 0){
             console.log("success")
             this.setState({
                 status:'process',
                 current: this.state.current + 1,
+                error:false
             })
         }
-        else if(0 < this.state.current < 6 && mac.match('[0-9a-fA-F]{2}(:[0-9a-fA-F]{2}){5}')){
+        else if(0 < this.state.current < 6 && mac.match('[0-9a-fA-F]{2}(:[0-9a-fA-F]{2}){5}') && this.countItemInArr(sn_mac, mac) === 1){
             console.log("success")
             this.setState({
                 status:'process',
                 current: this.state.current + 1,
+                error:false,
+                data: data
             })
         }
         else{
             console.log("error")
             notification['error']({
                 message: 'error',
-                description: 'sn or mac dismatch',
+                description: 'sn or mac mismatch or duplicate, please check your input',
                 className: 'custom-class',
                 style: {
                     width: 600,
                 },
+                duration:null
             })
             this.setState({
                 status: 'error',
+                error: true
             })
         }
         console.log(this.state.current)
@@ -146,7 +187,7 @@ class Bind extends Component {
             let apiKey = await Auth.getApiKey()
             console.log(`bind apikey:${apiKey}`)
             const options = {
-                url: `https://dev.api.connect.mio-labs.com/v1/gateways/${sn_mac[0]}/peripherals`,
+                url: `https://stg.api.connect.mio-labs.com/v1/gateways/${sn_mac[0]}/peripherals`,
                 method: 'POST',
                 data: {
                     "TMB2084A":[sn_mac[1]],
@@ -166,7 +207,8 @@ class Bind extends Component {
             this.setState({
                 current: this.state.current + 1,
                 loading: false,
-                error:false
+                error:false,
+                status:'process'
             })
         }catch(err){
             notification['error']({
@@ -176,6 +218,7 @@ class Bind extends Component {
                 style: {
                     width: 600,
                 },
+                duration:null
             })
             this.setState({
                 status: 'error',
@@ -190,7 +233,7 @@ class Bind extends Component {
     }
 
     render(){
-        const{current, status, loading, error} = this.state
+        const{current, status, loading, error, data} = this.state
         return(
             <Row style={{"marginTop":'10vh'}}>
                 <Col span={18} offset={3}>
@@ -205,23 +248,31 @@ class Bind extends Component {
                         <div className="steps-action">
                             {}
                             {current < 6 && (
-                                <Button type="primary" onClick={this.next}>
-                                    Next
-                                </Button>
-                            )}
-                            <br/><br/>
-                            {current === 6 && (
                                 <>
-                                    <Button type="primary" loading={loading} onClick={this.doBind}>
-                                        Bind
+                                    <Button type="primary" onClick={this.next}>
+                                        Next
                                     </Button>
-                                    
                                     {error && (
                                         <Button onClick={this.restart} style={{"marginLeft":"20px"}}>
                                             Restart
                                         </Button>
-                                    )
-                                    }
+                                    )}
+                                </>
+                            )}
+                            <br/>
+                            {current === 6 && (
+                                <>
+                                    <h2>Please check the data in the table and click Restart in case of any error.<p/>
+                                    MioConnect will bind AnyHub with Bluetooth device and generate QR code after you click the Bind button</h2>
+                                    <Table columns={columns} dataSource={data} pagination={false} />
+                                    <Button type="primary" loading={loading} onClick={this.doBind} style={{"marginTop":"20px"}}>
+                                        Bind
+                                    </Button>
+
+                                    <Button onClick={this.restart} style={{"marginLeft":"20px"}}>
+                                        Restart
+                                    </Button>
+  
                                 </>
                             )}
                             {current === 7 && (
